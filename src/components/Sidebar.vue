@@ -1,5 +1,6 @@
 <template>
- <div id="sidebar" :class="{'d-none': !show}" class="sidebar">
+  <transition name="fade-nav">
+ <div id="sidebar" v-if="show" class="sidebar">
        <i id="close" @click="toggleMenu"  class="d-inline fas fa-times"></i>
         <div>
             <img :src="require(`@/assets/img/logo.png`)" class="img-responsive">
@@ -27,6 +28,9 @@
         </div>
 
     </div>
+    
+    </transition>
+    
     <div class="d-flex align-items-center bg-success py-2">
        <i id="show" @click.self="toggleMenu" class="d-inline px-3  fas fa-bars fa-3x" style="color:#fff;"></i>
         <div class="px-3 input-group px-0 py-3 col-5">
@@ -36,7 +40,10 @@
             <input type="text" class="form-control" placeholder="Search" aria-label="Username" aria-describedby="basic-addon1">
         </div>
         </div>
+        
+        <transition name="modal-pop">
         <Modal :modaltype="modaltype"  v-if="modalclose" @modal="closeModal"></Modal>
+        </transition>
 </template>
 
 <script>
@@ -95,5 +102,20 @@ import Modal from './Modal.vue'
     padding: 10px;
     cursor: pointer;
 
+}
+
+.fade-nav-enter-from, .fade-nav-leave-to{
+  opacity: 0;
+  transform: translateX(-115px);
+}
+.fade-nav-enter-active, .fade-nav-leave-active{
+  transition: all .5s ease;
+}
+
+.modal-pop-enter-from, .modal-pop-leave-to{
+  opacity: 0;
+}
+.modal-pop-enter-active, .modal-pop-leave-active{
+  transition: all .5s ease;
 }
 </style>

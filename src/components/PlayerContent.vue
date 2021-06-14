@@ -3,7 +3,7 @@
     <div id="player-content">
 
         <div class="mt-5">
-            <h1>All Songs</h1>
+            <h1 class="">All Songs</h1>
             <div class="table-responsive">
                 <table>
                     <thead>
