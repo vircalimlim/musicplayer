@@ -27,7 +27,7 @@
         </div>
 
     </div>
-    <div class="bg-success py-2">
+    <div class="d-flex align-items-center bg-success py-2">
        <i id="show" @click.self="toggleMenu" class="d-inline px-3  fas fa-bars fa-3x" style="color:#fff;"></i>
         <div class="px-3 input-group px-0 py-3 col-5">
             <div class="input-group-prepend">
