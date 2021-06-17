@@ -34,9 +34,7 @@
           </div>
           <div class="modal-footer"> <button @click="closeModal" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             <button @click="submitList" type="button" class="btn btn-primary">Save changes</button> 
-            <div v-for="list in datalist">
-              {{list}}
-            </div>
+
         </div> 
       </div>
 
@@ -63,7 +61,7 @@
         album: '',
         duration: '',
         //uploadlist: {},
-        arrayUpload: [],
+        //arrayUpload: [],
       }
     },
     
@@ -87,8 +85,10 @@
           album: this.album,
           duration: this.duration,
         }
-        this.arrayUpload.push(newUpload)
-        this.$emit('upload', this.arrayUpload)
+        
+        this.$emit('upload', newUpload)
+        
+        newUpload = {}
         
       },
       

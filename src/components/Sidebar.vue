@@ -44,7 +44,7 @@
             <input type="text" class="form-control" placeholder="Search" aria-label="Username" aria-describedby="basic-addon1">
         </div>
         </div>
-        
+
         <transition name="modal-pop">
         <Modal :modaltype="modaltype"  v-if="modalclose" @modal="closeModal" @upload="uploadMusic" @playlist="submitList"></Modal>
         </transition>
@@ -67,7 +67,7 @@ import PlayerContent from './PlayerContent.vue'
         modalclose: false,
         modaltype: '',
         datalist: [],
-        musiclist: ''
+        musiclist: []
       }
     },
     
@@ -88,8 +88,8 @@ import PlayerContent from './PlayerContent.vue'
       },
       
       uploadMusic(value){
-        this.musiclist = value
-        //alert(this.musiclist[0].title)
+        this.musiclist.push(value)
+        //alert(this.musiclist)
       }
     }
   }
