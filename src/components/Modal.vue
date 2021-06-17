@@ -8,13 +8,19 @@
      <div v-if="modaltype == 'upload'" class="">
         <div class="modal-header">
            <h5 class="modal-title" id="exampleModalLabel">Upload Music</h5>
+          
            <button @click="closeModal" type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
           </div>
           <div class="modal-body">
-            <input class="form-control" type="text">
+            <input class="my-2 form-control" placeholder="Title" type="text" v-model="title">
+            <input placeholder="Artist" class="my-2 form-control" type="text" v-model="artist">
+            <input placeholder="Album" class="my-2 form-control" type="text" v-model="album">
+            <input placeholder="Duration" class="my-2 form-control" type="text" v-model="duration">
           </div>
+          
           <div class="modal-footer"> <button @click="closeModal" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button> 
+            <button @click="uploadMusic" type="button" class="btn btn-primary">Save changes</button> 
+
         </div> 
       </div>
       
@@ -24,14 +30,16 @@
            <button @click="closeModal" type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
           </div>
           <div class="modal-body">
-            <input class="form-control" type="text">
+            <input placeholder="Add Playlist" v-model="playlist" class="form-control" type="text">
           </div>
           <div class="modal-footer"> <button @click="closeModal" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button> 
+            <button @click="submitList" type="button" class="btn btn-primary">Save changes</button> 
+            <div v-for="list in datalist">
+              {{list}}
+            </div>
         </div> 
       </div>
 
-        
       </div>
     </div>
   </div>
@@ -39,12 +47,23 @@
 </template>
 
 <script>
+
   export default{
+    
     props: ['modaltype'],
     
     data(){
       return{
+        playerContent: true,
         hide: false,
+        playlist: '',
+        datalist: [],
+        title: '',
+        artist: '',
+        album: '',
+        duration: '',
+        //uploadlist: {},
+        arrayUpload: [],
       }
     },
     
@@ -52,7 +71,27 @@
       closeModal(){
         //this.hide = !this.hide
         this.$emit('modal', this.hide)
-      }
+      },
+      
+      submitList(){
+        this.$emit('playlist', this.playlist)
+        this.playlist = ''
+        //this.datalist.push(this.playlist)
+      },
+      
+      uploadMusic(){
+        
+        const newUpload = {
+          title: this.title,
+          artist: this.artist,
+          album: this.album,
+          duration: this.duration,
+        }
+        this.arrayUpload.push(newUpload)
+        this.$emit('upload', this.arrayUpload)
+        
+      },
+      
     }
   }
 </script>

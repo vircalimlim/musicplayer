@@ -1,6 +1,6 @@
 <template>
+  
   <Sidebar></Sidebar>
-  <PlayerContent></PlayerContent>
 </template>
 
 <script>

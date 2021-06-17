@@ -26,6 +26,9 @@
         <div>
             <a>Playlist 4</a>
         </div>
+        <div class="m-0 p-0" v-for="list in datalist">
+          <a>{{list}}</a>
+        </div>
 
     </div>
     
@@ -33,6 +36,7 @@
     
     <div class="d-flex align-items-center bg-success py-2">
        <i id="show" @click.self="toggleMenu" class="d-inline px-3  fas fa-bars fa-3x" style="color:#fff;"></i>
+       
         <div class="px-3 input-group px-0 py-3 col-5">
             <div class="input-group-prepend">
                 <button class="btn btn-outline-secondary" type="button"><i class="fas fa-search"></i></button>
@@ -42,23 +46,28 @@
         </div>
         
         <transition name="modal-pop">
-        <Modal :modaltype="modaltype"  v-if="modalclose" @modal="closeModal"></Modal>
+        <Modal :modaltype="modaltype"  v-if="modalclose" @modal="closeModal" @upload="uploadMusic" @playlist="submitList"></Modal>
         </transition>
+        
+        <PlayerContent :musiclist="musiclist"></PlayerContent>
 </template>
 
 <script>
 import Modal from './Modal.vue'
-
+import PlayerContent from './PlayerContent.vue'
   export default{
     components:{
-      Modal
+      Modal,
+      PlayerContent
     },
     
     data(){
       return{
         show: false,
         modalclose: false,
-        modaltype: ''
+        modaltype: '',
+        datalist: [],
+        musiclist: ''
       }
     },
     
@@ -73,6 +82,14 @@ import Modal from './Modal.vue'
       openModal(data){
         this.modaltype = data
         this.modalclose = !this.modalclose
+      },
+      submitList(value){
+        this.datalist.push(value)
+      },
+      
+      uploadMusic(value){
+        this.musiclist = value
+        //alert(this.musiclist[0].title)
       }
     }
   }

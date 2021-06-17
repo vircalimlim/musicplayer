@@ -1,5 +1,5 @@
 <template>
-  
+
     <div id="player-content">
 
         <div class="mt-5">
@@ -35,14 +35,14 @@
                             <td>Some title</td>
                             <td>Some artist</td>
                             <td>Some album</td>
-                            <td>3:45</td>
+                            <td>3:21</td>
                         </tr>
-                        <tr>
+                        <tr v-for="music in musiclist">
                             <td align="center"><i class="fas fa-play"></i></td>
-                            <td>Some title</td>
-                            <td>Some artist</td>
-                            <td>Some album</td>
-                            <td>3:45</td>
+                            <td>{{music.title}}</td>
+                            <td>{{music.artist}}</td>
+                            <td>{{music.album}}</td>
+                            <td>{{music.duration}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -50,9 +50,6 @@
         
 
         </div>
-
-
-
 
 
     </div>
@@ -69,45 +66,17 @@
 </div>
 </div>
 
-<div class="modal fade" id="upload" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Upload Music</h5>
-      </div>
-      <div class="modal-body">
-        <div class="drag-upload">
-            
-        </div>
-      </div>
-      <div class="modal-footer">
-       <button type="button" class="btn btn-light">Upload</button>
-        <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="modal fade" id="playlist" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Create Playlist</h5>
-      </div>
-      <div class="modal-body">
-        <input class="create-playlist-input">
-      </div>
-      <div class="modal-footer">
-       <button type="button" class="btn btn-light">Create</button>
-        <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
-      </div>
-    </div>
-  </div>
-</div>
+
   
 </template>
 
 <script>
+
   export default{
+    props: ['musiclist'],
+    data(){
+      
+    }
     
   }
 </script>
